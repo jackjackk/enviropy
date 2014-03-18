@@ -11,6 +11,7 @@ At the moment only Windows is supported.
     import enviropy as ep
     appdataPath = ep.getEnvironmentVariable("APPDATA")
     dropboxHomePath = ep.getDropboxRoot()
+    googleDrivePath = ep.getGoogleDriveRoot()
 
 # DISCLAIMER
 

@@ -1,6 +1,7 @@
 import base64
 import ctypes
 import os
+import re
 
 def getEnvironmentVariable(name):
     """
@@ -44,3 +45,20 @@ def getDropboxRoot():
 
     # decode last line, path to dropbox watch folder with no trailing slash.
     return base64.b64decode(sLine)
+
+def getGoogleDriveRoot():
+    sConfigFile = os.path.join(getEnvironmentVariable('LOCALAPPDATA'), 'Google/Drive/sync_config.db')
+    sGoogleDriveDir = None
+    with open(sConfigFile) as dbxfile:
+        for sLine in dbxfile:
+            m = re.search('\\\\\?\\\\(.*Google Drive)', sLine)
+            if m != None:
+                sGoogleDriveDir = m.group(1)
+                break
+    return sGoogleDriveDir
+    # sqlite3 approach requires newest version of pysqlite
+    # conn = sqlite3.connect(dbFilePath)
+    # c = conn.cursor()
+    # for row in c.execute("select * from data where entry_key='local_sync_root_path'"):
+    #     print row
+    # conn.close()
