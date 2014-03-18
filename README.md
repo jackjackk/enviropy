@@ -8,7 +8,7 @@ At the moment only Windows is supported.
 
 # Usage
 
-    import environmentpy as ep
+    import enviropy as ep
     appdataPath = ep.getEnvironmentVariable("APPDATA")
     dropboxHomePath = ep.getDropboxRoot()
 
